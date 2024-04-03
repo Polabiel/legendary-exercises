@@ -115,6 +115,6 @@ public class Ex04 {
 - *(A)* Qual é o resultado da impressão da linha 31?
 Resposta: 13 - 13 = 0
 - *(B)* busca1 é "Melhor" do que busca2? Justifique sua resposta.
-> Não, a busca1 é uma busca que traz para o usuario uma lentidão de acordo com a quantidade de elementos no array, já a busca2 é uma busca binária que é mais eficiente e rápida. fazendo com que o valores sejam particionados/divididos para eliminar certa para de valores que não são necessários para a busca. (O(log n))
+Não, a busca1 é uma busca que traz para o usuario uma lentidão de acordo com a quantidade de elementos no array, já a busca2 é uma busca binária que é mais eficiente e rápida. fazendo com que o valores sejam particionados/divididos para eliminar certa para de valores que não são necessários para a busca. (O(log n))
 > [!IMPORTANT]
 > A busca binária é muito eficiente no entanto, ela só funciona em arrays ordenados.
