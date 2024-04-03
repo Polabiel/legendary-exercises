@@ -112,9 +112,83 @@ public class Ex04 {
 }
 ```
 
-- *(A)* Qual é o resultado da impressão da linha 31?
-Resposta: 13 - 13 = 0
-- *(B)* busca1 é "Melhor" do que busca2? Justifique sua resposta.
-Não, a busca1 é uma busca que traz para o usuario uma lentidão de acordo com a quantidade de elementos no array, já a busca2 é uma busca binária que é mais eficiente e rápida. fazendo com que o valores sejam particionados/divididos para eliminar certa para de valores que não são necessários para a busca. (O(log n))
-> [!IMPORTANT]
-> A busca binária é muito eficiente no entanto, ela só funciona em arrays ordenados.
+- _(A)_ Qual é o resultado da impressão da linha 31?
+  Resposta: 13 - 13 = 0
+- _(B)_ busca1 é "Melhor" do que busca2? Justifique sua resposta.
+  Não, a busca1 é uma busca que traz para o usuario uma lentidão de acordo com a quantidade de elementos no array, já a busca2 é uma busca binária que é mais eficiente e rápida. fazendo com que o valores sejam particionados/divididos para eliminar certa para de valores que não são necessários para a busca. (O(log n))
+  > [!IMPORTANT]
+  > A busca binária é muito eficiente no entanto, ela só funciona em arrays ordenados.
+
+## Exercício 5
+
+Escreva um programa em Java que embaralhe um arranjo A de n inteiros.
+
+```java
+import java.util.Random;
+
+public class Ex05 {
+    public static int[] embaralhe(int[] A) {
+        Random rand = new Random();
+
+        for (int i = A.length - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
+            int temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
+
+        return A;
+    }
+}
+```
+
+> [!NOTE] Basicamente, o método `embaralhe` recebe um array de inteiros e embaralha os elementos do array. O método `nextInt` da classe `Random` gera um número aleatório entre 0 e o valor passado como parâmetro. O método `embaralhe` embaralha o array de trás para frente, trocando o elemento na posição `i` com o elemento na posição `j`, onde `j` é um número aleatório entre 0 e `i`.
+
+## Exercício 6
+
+Escreva um programa em Java uma função que encontre dois elementos de um arranjo `A` de `n` inteiros, distintos entre si, que somados seja igual a um determinado inteiro `k`.
+
+> Resposta em baixo
+
+```java
+public class Ex06 {
+    public static int[] funcao(int[] A, int k) {
+        for (int i = 0; i < A.length - 1; i++) {
+            for (int j = 0; j < A.length; j++) {
+                if (A[i] + A[j] == k) {
+                    return new int[] { i, j };
+                }
+            }
+        }
+        return new int[0];
+    }
+}
+```
+
+## Exercício 7
+
+Escreva um programa em Java que remova os elementos duplicados de um arranjo `A` de `n` cadeias de caracteres.
+
+```java
+public class Ex07 {
+    public static int[] funcao(int[] A) {
+        int[] B = new int[A.length];
+        int j = 0;
+        for (int i = 0; i < A.length; i++) {
+            boolean repetido = false;
+            for (int k = 0; k < j; k++) {
+                if (A[i] == B[k]) {
+                    repetido = true;
+                    break;
+                }
+            }
+            if (!repetido) {
+                B[j] = A[i];
+                j++;
+            }
+        }
+        return B;
+    }
+}
+
+```
