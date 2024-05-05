@@ -192,3 +192,123 @@ public class Ex07 {
 }
 
 ```
+## Exercício 8
+
+Escreva um programa em Java que organize um arranjo A de n inteiros de modo
+que todos os inteiros negativos apareçam antes de todos os inteiros positivos.
+
+```java
+import java.util.Arrays;
+
+public class OrganizaArray {
+    public static void main(String[] args) {
+        int[] arr = {-1, 3, -5, 7, 2, -4, 6, -8};
+        organizeArray(arr);
+        System.out.println("Array organizado: " + Arrays.toString(arr));
+    }
+    
+    public static void organizeArray(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        
+        while (left < right) {
+            while (arr[left] < 0 && left < right) {
+                left++;
+            }
+            while (arr[right] >= 0 && left < right) {
+                right--;
+            }
+            if (left < right) {
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+            }
+        }
+    }
+}
+```
+
+## Exercício 9
+
+Escreva um programa em Java que obtenha o elemento majoritário de um
+arranjo A de n inteiros. Um elemento majoritário é um elemento que aparece
+mais de n/2 vezes.
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class ElementoMajoritario {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 2, 3, 2, 2};
+        int majoritario = encontrarElementoMajoritario(arr);
+        if (majoritario != -1) {
+            System.out.println("Elemento majoritário: " + majoritario);
+        } else {
+            System.out.println("Não há elemento majoritário no array.");
+        }
+    }
+    
+    public static int encontrarElementoMajoritario(int[] arr) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int n = arr.length;
+        
+        // Conta a ocorrência de cada elemento
+        for (int num : arr) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+        }
+        
+        // Verifica se algum elemento tem ocorrência maior que n/2
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() > n / 2) {
+                return entry.getKey();
+            }
+        }
+        
+        // Retorna -1 se não houver elemento majoritário
+        return -1;
+    }
+}
+```
+## Exercício 10
+Escreva um programa em Java que encontre um elemento específico em um
+arranjo A de n inteiros usando a busca por interpolação.
+
+```java
+public class BuscaInterpolacao {
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+        int elemento = 13;
+        int indice = buscaInterpolacao(arr, elemento);
+        if (indice != -1) {
+            System.out.println("Elemento encontrado na posição: " + indice);
+        } else {
+            System.out.println("Elemento não encontrado no array.");
+        }
+    }
+    
+    public static int buscaInterpolacao(int[] arr, int elemento) {
+        int esquerda = 0;
+        int direita = arr.length - 1;
+        
+        while (esquerda <= direita && elemento >= arr[esquerda] && elemento <= arr[direita]) {
+            // Fórmula da interpolação para encontrar a posição aproximada
+            int posicao = esquerda + ((elemento - arr[esquerda]) * (direita - esquerda)) / (arr[direita] - arr[esquerda]);
+            
+            if (arr[posicao] == elemento) {
+                return posicao;
+            }
+            
+            if (arr[posicao] < elemento) {
+                esquerda = posicao + 1;
+            } else {
+                direita = posicao - 1;
+            }
+        }
+        
+        return -1;
+    }
+}
+```
